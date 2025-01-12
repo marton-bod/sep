@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @SpringBootApplication
-public class WebServiceApplication {
+public class SepApplication {
     public static void main(String[] args) {
-        SpringApplication.run(WebServiceApplication.class, args);
+        SpringApplication.run(SepApplication.class, args);
     }
 }
 
