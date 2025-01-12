@@ -38,6 +38,15 @@ class SepApplicationTest {
         assertThat(getResponse.getBody()).isNotNull();
         assertThat(getResponse.getBody().length).isEqualTo(1);
         assertThat(getResponse.getBody()[0].getLastName()).isEqualTo("Doe");
+
+        ResponseEntity<Student> getByIdResponse = restTemplate.getForEntity("/api/students/1", Student.class);
+        assertThat(getByIdResponse.getStatusCodeValue()).isEqualTo(200);
+        assertThat(getByIdResponse.getBody()).isNotNull();
+        assertThat(getByIdResponse.getBody().getLastName()).isEqualTo("Doe");
+
+        getByIdResponse = restTemplate.getForEntity("/api/students/2", Student.class);
+        assertThat(getByIdResponse.getStatusCodeValue()).isEqualTo(404);
+        assertThat(getByIdResponse.getBody()).isNull();
     }
 
 
@@ -59,5 +68,14 @@ class SepApplicationTest {
         assertThat(getResponse.getBody()).isNotNull();
         assertThat(getResponse.getBody().length).isEqualTo(1);
         assertThat(getResponse.getBody()[0].getCourseTitle()).isEqualTo("Deep Neural Networks");
+
+        ResponseEntity<Feedback> getByIdResponse = restTemplate.getForEntity("/api/feedback/1", Feedback.class);
+        assertThat(getByIdResponse.getStatusCodeValue()).isEqualTo(200);
+        assertThat(getByIdResponse.getBody()).isNotNull();
+        assertThat(getByIdResponse.getBody().getCourseTitle()).isEqualTo("Deep Neural Networks");
+
+        getByIdResponse = restTemplate.getForEntity("/api/feedback/2", Feedback.class);
+        assertThat(getByIdResponse.getStatusCodeValue()).isEqualTo(404);
+        assertThat(getByIdResponse.getBody()).isNull();
     }
 }
