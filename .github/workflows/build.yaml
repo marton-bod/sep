@@ -33,3 +33,9 @@ jobs:
       # Run Maven clean and install
       - name: Run Maven Build
         run: mvn clean install
+
+      - name: Upload Surefire Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: surefire-reports
+          path: target/surefire-reports
